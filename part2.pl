@@ -3,6 +3,7 @@
 % z5261846
 
 :- op(300, xfx, <-).
+
 inter_construction(X <- B1, Y <- B2, X <- NewX, Y <- NewY, Z <- B) :-
     X \= Y,
     intersection(B1, B2, B),
@@ -45,18 +46,7 @@ dichotomisation(X <- B1, not(Y) <- B2, X <- C1, not(Y) <- C2, Z <- C3, not(Z) <-
     append(I, [Z], C1),
     append(I, [not(Z)], C2).
 
-
-
-
 truncation(X <- B1, Y <- B2, X <- C1) :-
     X == Y,
     intersection(B1, B2, I),
     C1 = I.
-
-test(X <- A1, not(Y) <- A2, X <- B1,  not(Y) <- B2, Z <- B3, not(Z) <- B4):-
-    B1 = A1,
-    B2 = A2,
-    gensym(z, Z),
-    B3 = A2,
-    B4 = A2.
-
