@@ -5,6 +5,7 @@
 :- op(300, xfx, <-).
 
 inter_construction(X <- B1, Y <- B2, X <- NewX, Y <- NewY, Z <- B) :-
+    reset_gensym,
     X \= Y,
     intersection(B1, B2, B),
     gensym(z, Z),
@@ -14,6 +15,7 @@ inter_construction(X <- B1, Y <- B2, X <- NewX, Y <- NewY, Z <- B) :-
     append(RestOfB2, [Z], NewY).
 
 intra_construction(X <- B1, Y <- B2, X <- C1, Z <- C2, Z <- C3) :-
+    reset_gensym,
     X == Y,
     intersection(B1, B2, I),
     gensym(z, Z),
@@ -37,6 +39,7 @@ identification(X <- B1, Y <- B2, X <- C1, Y <- C2) :-
     length(RestOfB1, 1) -> (C1 = B1, C2 = RestOfB2)).
 
 dichotomisation(X <- B1, not(Y) <- B2, X <- C1, not(Y) <- C2, Z <- C3, not(Z) <- C4) :-
+    reset_gensym,
     X == Y,
     intersection(B1, B2, I),
     subtract(B1, I, RestOfB1),
